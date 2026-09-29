@@ -9,22 +9,22 @@
 *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#18212b}
 main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
 .card{width:min(720px,100%);background:#fff;border:1px solid #dde2e7;border-radius:18px;padding:52px;box-shadow:0 10px 35px #0000000a}
-.brand{font-size:18px;font-weight:700;color:#255fa8;margin-bottom:38px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:0}.brand{font-size:18px;font-weight:700;color:#255fa8;margin-bottom:38px}
 h1{font-size:46px;line-height:1.08;margin:0 0 18px;letter-spacing:-1px}
 p{font-size:19px;line-height:1.55;color:#5f6b77;margin:0 0 32px;max-width:600px}
-a{display:inline-block;background:#255fa8;color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:14px 22px;border-radius:9px}
-a:hover{background:#1e4f8c}
+.lang a{background:none;color:#65707c;padding:4px;font-size:14px}.lang a.active{color:#255fa8;font-weight:700}.cta{display:inline-block;background:#255fa8;color:#fff;text-decoration:none;font-weight:700;font-size:17px;padding:14px 22px;border-radius:9px}
+.cta:hover{background:#1e4f8c}
 .small{font-size:14px;color:#8a949e;margin-top:36px;margin-bottom:0}
-@media(max-width:600px){.card{padding:32px 24px}h1{font-size:36px}.brand{margin-bottom:28px}}
+@media(max-width:600px){.card{padding:32px 24px}h1{font-size:36px}.top{margin-bottom:28px}}
 </style>
 </head>
 <body>
 <main>
 <section class="card">
-<div class="brand">DidacticsLab</div>
+<div class="top"><div class="brand">DidacticsLab</div><div class="lang"><a class="active" href="index.html">EN</a> | <a href="index-nl.html">NL</a></div></div>
 <h1>Better teaching starts with better insight.</h1>
 <p>Simple tools that help teachers reflect on their teaching and identify opportunities to develop.</p>
-<a href="create.html">Teacher360 feedback →</a>
+<a class="cta" href="create.html">Teacher360 feedback →</a>
 <p class="small">Teacher360 is currently being developed and tested.</p>
 </section>
 </main>
