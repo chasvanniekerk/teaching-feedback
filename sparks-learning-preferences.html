@@ -7,63 +7,63 @@
 @media(max-width:500px){.cards,.situationgrid{grid-template-columns:1fr}.panel{padding:20px}.metric{grid-template-columns:125px 1fr 55px}.navin{height:auto;min-height:66px;padding:12px 0;flex-wrap:wrap}}
 </style></head><body>
 <header class="nav"><div class="wrap navin"><a class="brand" href="index.html">DidacticsLab</a><a href="tools.html">Tools</a><a href="about.html">About</a><span>EN</span></div></header>
-<section class="hero"><div class="wrap"><div class="eyebrow">SPARKS · Development instrument</div><h1>Learning Preferences & Learning Situations</h1><p>Learn the six approaches first. Then explore which approaches you would choose in different learning situations. The aim is reflection: preferences may change with what you are trying to learn.</p><div class="privacy">Private by design · answers stay only in this page</div></div></section>
+<section class="hero"><div class="wrap"><div class="eyebrow">SPARKS · Development instrument</div><h1>Learning Preferences & Learning Situations</h1><p>Explore which learning approaches you would choose in different Learning Situations. The same six responses appear in every question so that the situation changes while the preference wording remains constant.</p><div class="privacy">Private by design · answers stay only in this page</div></div></section>
 <main class="main"><div class="wrap">
 <section id="training" class="panel">
-<div class="eyebrow">Part 1 · Short training</div><h2>Six ways you might choose to learn</h2><p class="muted">These are approaches you can choose—not fixed learner types. Read them now because the same six choices will appear throughout the assessment.</p>
+<div class="eyebrow">Part 1 · Short training</div><h2>Six ways you might choose to learn</h2><p class="muted">SPARKS is designed to give an indication of how you prefer to learn and whether those preferences change with what you are trying to accomplish. The same six behavioural responses appear unchanged in every scenario.</p>
 <div class="cards" id="preferenceCards"></div>
-<h3>Five learning situations</h3><p class="muted">What you prefer may depend on what you are trying to accomplish. The assessment therefore presents five different kinds of learning situation.</p>
+<h3>Five learning situations</h3><p class="muted">The questionnaire separates what you are trying to accomplish from how you prefer to learn. Each of the five Learning Situations is represented by four scenarios, giving 20 questions.</p>
 <div class="situationgrid" id="situationCards"></div>
-<div class="rulebox"><b>How you will answer</b><br>Select every approach you would genuinely use. You may rank selected approaches when one is preferred over another, but ranking is optional and equal ranks are allowed. An unselected approach simply means “I would not choose this here”—it is not ranked last.</div>
+<div class="rulebox"><b>How you will answer</b><br>Select only the approaches you would genuinely use. You may leave any or all choices blank. Ranking is optional: if you genuinely prefer one selected approach over another you may rank them, and ties are allowed. Unselected approaches are not treated as being ranked last.</div>
 <div style="margin-top:22px"><button id="toPractice" class="btn primary" type="button">Try a practice question →</button></div>
 <p class="fine">Development version. SPARKS is a reflective instrument under development, not a validated psychometric scale and not a claim that students should be taught according to a fixed “learning style”.</p>
 </section>
 
-<section id="practice" class="panel hidden"><div class="eyebrow">Part 2 · Practice</div><h2>Try the response method</h2><p class="muted">This practice item is not scored. The six approaches are exactly the same as in the assessment.</p><div class="situationtag">Practice item</div><h3 class="question">You need to understand a new topic well enough to explain its main idea tomorrow.</h3><div class="hint">Select what you would use. Ranking is optional.</div><div id="practiceOptions" class="options"></div><p class="practiceNote">Tip: selecting A and B does not require you to decide which is “better”. If they are equal, leave both unranked or give them the same rank.</p><div class="qactions"><button id="backTraining" class="btn secondary" type="button">← Training</button><button id="begin" class="btn primary" type="button" disabled>Start 20 questions →</button></div></section>
+<section id="practice" class="panel hidden"><div class="eyebrow">Part 2 · Practice</div><h2>Try the response method</h2><p class="muted">This practice item is not scored. The six responses are exactly the same in every assessment question; only the scenario changes.</p><div class="situationtag">Practice item</div><h3 class="question">You need to learn about an unfamiliar topic for an upcoming lesson.</h3><div class="hint">Select what you would actually use. You may select none, one or several. Ranking is optional and ties are allowed.</div><div id="practiceOptions" class="options"></div><p class="practiceNote">Tip: do not select an approach just because it is available. If two selected approaches are equally preferred, leave both unranked or give them the same rank.</p><div class="qactions"><button id="backTraining" class="btn secondary" type="button">← Training</button><button id="begin" class="btn primary" type="button">Start 20 questions →</button></div></section>
 
-<section id="quiz" class="panel hidden"><div class="qmeta"><span id="count"></span><span>20 questions</span></div><div class="progressline"><div id="progress" class="progressfill"></div></div><div id="situationTag" class="situationtag"></div><h2 id="question" class="question"></h2><div class="hint">Which approaches would you use? Select all that apply. Ranking is optional; ties are allowed.</div><div id="options" class="options"></div><div class="qactions"><button id="back" class="btn secondary" type="button">← Back</button><button id="next" class="btn primary" type="button" disabled>Next →</button></div></section>
+<section id="quiz" class="panel hidden"><div class="qmeta"><span id="count"></span><span>20 questions</span></div><div class="progressline"><div id="progress" class="progressfill"></div></div><div id="situationTag" class="situationtag"></div><h2 id="question" class="question"></h2><div class="hint">Which approaches would you actually use? Select only those that apply. You may leave choices blank. Ranking is optional; ties are allowed.</div><div id="options" class="options"></div><div class="qactions"><button id="back" class="btn secondary" type="button">← Back</button><button id="next" class="btn primary" type="button" disabled>Next →</button></div></section>
 
-<section id="results" class="panel hidden"><div class="results-head"><div class="eyebrow">Your SPARKS profile</div><h2>Your learning preference pattern</h2><p class="result-note">The main profile counts how often you selected each approach across the 20 situations. Optional rankings are retained as additional information but do not override what you selected.</p></div><div id="profile" class="profile"></div><div class="matrix"><h3>Selections by learning situation</h3><table><thead><tr><th>Situation</th><th>V</th><th>L</th><th>R</th><th>D</th><th>W</th><th>K</th></tr></thead><tbody id="matrixBody"></tbody></table></div><div id="reflection" class="reflection"></div><div class="qactions"><button id="restart" class="btn secondary" type="button">Start again</button><button id="print" class="btn primary" type="button">Print / Save as PDF</button></div><p class="fine">Nothing is sent to DidacticsLab. Refreshing, closing or leaving this page clears the responses.</p></section>
+<section id="results" class="panel hidden"><div class="results-head"><div class="eyebrow">Your SPARKS profile</div><h2>Your learning preference pattern</h2><p class="result-note">The main profile shows how often you selected each approach across the 20 scenarios. Each approach had four opportunities within each Learning Situation. Optional rankings are additional preference information and do not turn unselected approaches into lower-ranked choices.</p></div><div id="profile" class="profile"></div><div class="matrix"><h3>Selections by learning situation</h3><table><thead><tr><th>Situation</th><th>V</th><th>L</th><th>R</th><th>D</th><th>W</th><th>K</th></tr></thead><tbody id="matrixBody"></tbody></table></div><div id="reflection" class="reflection"></div><div class="qactions"><button id="restart" class="btn secondary" type="button">Start again</button><button id="print" class="btn primary" type="button">Print / Save as PDF</button></div><p class="fine">Nothing is sent to DidacticsLab. Refreshing, closing or leaving this page clears the responses.</p></section>
 </div></main><footer class="footer"><div class="wrap">DidacticsLab · SPARKS is a developing framework.</div></footer>
 
 <script>
 (()=>{
 const P=[
-{c:"V",n:"Visual",t:"Do you create or use a visual representation, such as a diagram, model or map?"},
-{c:"L",n:"Listening",t:"Do you listen to an explanation or explain the topic aloud?"},
-{c:"R",n:"Reading",t:"Do you read information about the topic?"},
-{c:"D",n:"Discussing",t:"Do you discuss the topic with someone else?"},
-{c:"W",n:"Writing",t:"Do you write about the topic in your own words?"},
-{c:"K",n:"Kinesthetic",t:"Do you learn by doing, trying, practising or physically working with the task?"}
+{c:"V",n:"Visual",t:"Do you seek information through diagrams or other visuals?"},
+{c:"L",n:"Listening",t:"Do you seek someone to explain it?"},
+{c:"R",n:"Reading",t:"Do you seek reading material about it?"},
+{c:"D",n:"Discussing",t:"Do you seek someone to discuss the topic with?"},
+{c:"W",n:"Writing",t:"Do you make written notes about it?"},
+{c:"K",n:"Kinesthetic",t:"Do you try it yourself?"}
 ];
 const S=[
-{n:"Consolidation",d:"Strengthen and organise something you have already encountered."},
-{n:"Practice",d:"Repeat or rehearse knowledge or a skill to improve fluency and accuracy."},
-{n:"Application",d:"Use learned knowledge or a method to complete a relevant task."},
-{n:"Problem Solving",d:"Work out how to deal with a problem when the solution is not immediately known."},
-{n:"Transfer",d:"Use prior learning in a meaningfully different or unfamiliar context."}
+{n:"Acquiring",d:"Learn something new."},
+{n:"Understanding",d:"Make sense of something."},
+{n:"Applying",d:"Use what you know."},
+{n:"Problem Solving",d:"Resolve something where the solution is not immediately known."},
+{n:"Transferring",d:"Use what you learned in a different situation."}
 ];
 const Q=[
-["Consolidation","You need to make sure the main ideas from today's lesson stay clear in your mind."],
-["Practice","You need to become quicker and more accurate at something you have just learned."],
-["Application","You need to apply newly learned knowledge to complete a familiar type of task."],
-["Problem Solving","You need to solve a problem and the correct approach is not immediately obvious."],
-["Transfer","You need to use something you learned in a new context that looks different from the original example."],
-["Consolidation","You have learned several related ideas and need to organise them so they make sense together."],
-["Practice","You understand a method but need to rehearse it until you can use it more confidently."],
-["Application","You need to use a method you were taught to produce a practical result."],
-["Problem Solving","You face an unfamiliar difficulty and need to work out what knowledge or method could help."],
-["Transfer","You need to adapt earlier learning to a situation you have not been shown before."],
-["Consolidation","You need to strengthen your understanding of material you studied earlier this week."],
-["Practice","You need to repeat a skill several times so that mistakes become less frequent."],
-["Application","You need to use what you have learned to carry out a realistic task."],
-["Problem Solving","You know the relevant topic, but you must decide for yourself how to tackle a new problem."],
-["Transfer","You need to recognise where knowledge from one topic could be useful in a different setting."],
-["Consolidation","You need to bring the important points from several learning activities together before moving on."],
-["Practice","You need to improve your performance by working with the same kind of task again."],
-["Application","You need to demonstrate that you can use recently learned knowledge in an appropriate situation."],
-["Problem Solving","You need to investigate why something is not working and develop a way forward."],
-["Transfer","You need to take a principle you understand and use it successfully under changed conditions."]
+["Acquiring","You need to learn about a topic that is completely new to you."],
+["Acquiring","You need to learn the main ideas of a subject you have not studied before."],
+["Acquiring","You need to learn new information before starting a new course or project."],
+["Acquiring","You need to become familiar with an unfamiliar concept for the first time."],
+["Understanding","You have learned the basic facts about a topic, but you need to understand how they fit together."],
+["Understanding","You know what a concept is, but you need to understand why it works the way it does."],
+["Understanding","You have learned several ideas about a subject, but you need to understand the relationships between them."],
+["Understanding","You are familiar with a topic, but part of it still does not make sense to you."],
+["Applying","You have learned a method and now need to use it to complete a task."],
+["Applying","You have learned a procedure and now need to use it correctly."],
+["Applying","You know a principle and now need to use it in an example."],
+["Applying","You have learned how something works and now need to use that knowledge to complete an activity."],
+["Problem Solving","You are faced with a problem and do not immediately know how to solve it."],
+["Problem Solving","Something is not working as expected and you need to determine what is causing the problem."],
+["Problem Solving","You need to achieve a particular result, but it is not clear which approach will work."],
+["Problem Solving","You encounter a difficulty where several possible solutions could be considered."],
+["Transferring","You need to use something you learned in one subject in a different subject."],
+["Transferring","You need to use something you learned in class in a real-life situation."],
+["Transferring","You need to use knowledge learned for one type of task to complete a different type of task."],
+["Transferring","You recognise that something you learned previously could be useful in a new situation."]
 ];
 const prefCards=document.querySelector("#preferenceCards"),sitCards=document.querySelector("#situationCards");
 prefCards.innerHTML=P.map(x=>'<div class="learncard"><b>'+x.c+' · '+x.n+'</b><p>'+x.t+'</p></div>').join("");
@@ -86,8 +86,8 @@ function wire(container,state,rerender){
   const sel=el.querySelector("select");if(sel)sel.addEventListener("change",e=>{if(e.target.value==="")delete state.ranks[code];else state.ranks[code]=Number(e.target.value)});
  });
 }
-function renderPractice(){document.querySelector("#practiceOptions").innerHTML=P.map((p,i)=>optionHTML(practice,i,"p")).join("");wire(document.querySelector("#practiceOptions"),practice,renderPractice);document.querySelector("#begin").disabled=practice.selected.length===0}
-function show(){const x=Q[idx],state=answers[idx];count.textContent='Question '+(idx+1);progress.style.width=(idx/Q.length*100)+'%';tag.textContent=x[0];question.textContent=x[1];options.innerHTML=P.map((p,i)=>optionHTML(state,i,"q")).join("");wire(options,state,show);back.disabled=idx===0;next.disabled=state.selected.length===0;next.textContent=idx===Q.length-1?'See my profile →':'Next →'}
+function renderPractice(){document.querySelector("#practiceOptions").innerHTML=P.map((p,i)=>optionHTML(practice,i,"p")).join("");wire(document.querySelector("#practiceOptions"),practice,renderPractice);document.querySelector("#begin").disabled=false}
+function show(){const x=Q[idx],state=answers[idx];count.textContent='Question '+(idx+1);progress.style.width=(idx/Q.length*100)+'%';tag.textContent=x[0];question.textContent=x[1];options.innerHTML=P.map((p,i)=>optionHTML(state,i,"q")).join("");wire(options,state,show);back.disabled=idx===0;next.disabled=false;next.textContent=idx===Q.length-1?'See my profile →':'Next →'}
 function finish(){
  const total=Object.fromEntries(P.map(p=>[p.c,0]));const by=Object.fromEntries(S.map(s=>[s.n,Object.fromEntries(P.map(p=>[p.c,0]))]));
  answers.forEach((a,i)=>a.selected.forEach(c=>{total[c]++;by[Q[i][0]][c]++}));
@@ -100,7 +100,7 @@ function finish(){
 document.querySelector("#toPractice").addEventListener("click",()=>{training.classList.add("hidden");practiceSec.classList.remove("hidden");renderPractice()});
 document.querySelector("#backTraining").addEventListener("click",()=>{practiceSec.classList.add("hidden");training.classList.remove("hidden")});
 document.querySelector("#begin").addEventListener("click",()=>{practiceSec.classList.add("hidden");quiz.classList.remove("hidden");show()});
-next.addEventListener("click",()=>{if(!answers[idx].selected.length)return;if(idx<Q.length-1){idx++;show()}else finish()});
+next.addEventListener("click",()=>{if(idx<Q.length-1){idx++;show()}else finish()});
 back.addEventListener("click",()=>{if(idx>0){idx--;show()}});
 document.querySelector("#restart").addEventListener("click",()=>{answers=Array.from({length:Q.length},blank);practice=blank();idx=0;results.classList.add("hidden");training.classList.remove("hidden");window.scrollTo(0,0)});
 document.querySelector("#print").addEventListener("click",()=>window.print());
