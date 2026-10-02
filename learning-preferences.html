@@ -119,9 +119,14 @@ function updateToc(){
   const tocTitle=document.querySelector('.page-toc-title');
   const readingLine=tocTitle ? tocTitle.getBoundingClientRect().top - 54 : window.innerHeight/2 - 54;
   let current=tocSections[0];
-  for(const section of tocSections){
-    if(section.getBoundingClientRect().top<=readingLine) current=section;
-    else break;
+  const atBottom=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2;
+  if(atBottom){
+    current=tocSections[tocSections.length-1];
+  }else{
+    for(const section of tocSections){
+      if(section.getBoundingClientRect().top<=readingLine) current=section;
+      else break;
+    }
   }
   setTocActive(current.id);
 }
