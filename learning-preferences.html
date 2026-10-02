@@ -90,7 +90,8 @@ const tocSections=[...document.querySelectorAll('.toc-section')];
 function setTocActive(id){tocLinks.forEach(link=>link.classList.toggle('active',link.getAttribute('href')==='#'+id))}
 function updateToc(){
   if(!tocSections.length)return;
-  const readingLine=140;
+  const tocTitle=document.querySelector('.page-toc-title');
+  const readingLine=tocTitle ? tocTitle.getBoundingClientRect().top : window.innerHeight/2;
   let current=tocSections[0];
   for(const section of tocSections){
     if(section.getBoundingClientRect().top<=readingLine) current=section;
