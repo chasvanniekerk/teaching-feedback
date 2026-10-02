@@ -88,17 +88,25 @@ document.querySelectorAll('.vcard').forEach(card=>{card.addEventListener('click'
 const tocLinks=[...document.querySelectorAll('.page-toc a')];
 const tocSections=[...document.querySelectorAll('.toc-section')];
 function setTocActive(id){tocLinks.forEach(link=>link.classList.toggle('active',link.getAttribute('href')==='#'+id))}
-if('IntersectionObserver' in window){
-  const visible=new Map();
-  const observer=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>entry.isIntersecting?visible.set(entry.target.id,entry.boundingClientRect.top):visible.delete(entry.target.id));
-    if(visible.size){
-      const current=[...visible.entries()].sort((a,b)=>Math.abs(a[1]-110)-Math.abs(b[1]-110))[0][0];
-      setTocActive(current);
-    }
-  },{rootMargin:'-90px 0px -55% 0px',threshold:0});
-  tocSections.forEach(section=>observer.observe(section));
-}else if(tocSections.length){setTocActive(tocSections[0].id)}
+function updateToc(){
+  if(!tocSections.length)return;
+  const readingLine=140;
+  let current=tocSections[0];
+  for(const section of tocSections){
+    if(section.getBoundingClientRect().top<=readingLine) current=section;
+    else break;
+  }
+  setTocActive(current.id);
+}
+let tocTick=false;
+window.addEventListener('scroll',()=>{
+  if(!tocTick){
+    requestAnimationFrame(()=>{updateToc();tocTick=false});
+    tocTick=true;
+  }
+},{passive:true});
+window.addEventListener('resize',updateToc);
 tocLinks.forEach(link=>link.addEventListener('click',()=>setTocActive(link.getAttribute('href').slice(1))));
+updateToc();
 </script>
 </body></html>
