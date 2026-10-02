@@ -26,20 +26,29 @@
 html{scroll-padding-top:var(--sparks-navigation-height,190px)}
 .toc-section{scroll-margin-top:16px}
 @media print{.sparks-navigation{display:none}}
+.page-toc{position:fixed;left:max(18px,calc((100vw - 1120px)/2 - 255px));top:50%;transform:translateY(-50%);width:195px;z-index:4;color:#5b6670}.page-toc-title{font-size:13px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:#46515c;margin:0 0 14px 16px}.page-toc nav{border-left:1px solid #d7e0e8}.page-toc a{display:block;position:relative;padding:10px 8px 10px 16px;text-decoration:none;font-size:15px;line-height:1.35}.page-toc a::before{content:"";position:absolute;left:-2px;top:7px;bottom:7px;width:3px;border-radius:3px}.page-toc a.active{color:#255fa8;font-weight:700}.page-toc a.active::before{background:#255fa8}.toc-section{scroll-margin-top:92px}@media(max-width:1450px){.page-toc{display:none}}
 </style>
 </head>
 <body>
 <div class="sparks-navigation"><header class="nav"><div class="wrap navin"><a class="brand" href="index.html">DidacticsLab</a><nav class="links"><a href="tools.html">Tools</a><a href="about.html">About</a></nav><div class="lang">EN</div></div></header>
 <nav class="sparks-pages" aria-label="SPARKS for Teachers pages"><div class="wrap"><p class="sparks-pages-title">SPARKS for Teachers</p><ul class="sparks-pages-links"><li><a href="learning-preferences.html">Understanding SPARKS</a></li><li><a href="applying-sparks.html">Applying SPARKS</a></li><li><a href="learning-situations.html" aria-current="page">Learning Situations</a></li><li><a href="sparks-lesson-designer.html">Lesson Designer</a></li></ul></div></nav></div>
 
+<aside class="page-toc" aria-label="On this page"><div class="page-toc-title">On this page</div><nav>
+<a href="#purpose">1. Purpose before strategy</a>
+<a href="#frameworks">2. Existing frameworks</a>
+<a href="#practice-consolidation">3. Practice &amp; Consolidation</a>
+<a href="#five-situations">4. Five Learning Situations</a>
+<a href="#boundaries">5. Keeping the boundaries visible</a>
+<a href="#sources">6. Research foundation</a>
+</nav></aside>
 <main>
 <section class="hero"><div class="wrap"><span class="dev">Development preview · literature synthesis under review</span><div class="eyebrow">SPARKS · Evidence trail</div><h1>Learning Situations</h1><p>How do we describe what a learner is trying to accomplish without already deciding how that learner should learn? This page documents the literature trail behind the current SPARKS Learning Situations synthesis.</p></div></section>
 
-<section class="section"><div class="wrap"><div class="eyebrow">1 · The research question</div><h2>Purpose before strategy</h2><p class="lead">For this work, a Learning Situation is provisionally defined as a strategy-neutral description of what the learner is trying to accomplish through learning. “I need to understand an unfamiliar concept” can leave several strategies open. “I need to learn through discussion” cannot: the strategy has already been chosen.</p>
+<section class="section toc-section" id="purpose"><div class="wrap"><div class="eyebrow">1 · The research question</div><h2>Purpose before strategy</h2><p class="lead">For this work, a Learning Situation is provisionally defined as a strategy-neutral description of what the learner is trying to accomplish through learning. “I need to understand an unfamiliar concept” can leave several strategies open. “I need to learn through discussion” cannot: the strategy has already been chosen.</p>
 <div class="flow"><span>Existing frameworks</span><i>→</i><span>What do they classify?</span><i>→</i><span>Filter for strategy neutrality</span><i>→</i><span>Recurring purposes</span><i>→</i><span>Current synthesis</span></div>
 <div class="callout"><h3>A boundary from the start</h3><p>The objective is not to make established frameworks fit SPARKS. Cognitive processes, learning activities, instructional methods, outcomes and expertise stages may all inform the analysis, but they are not automatically Learning Situations.</p></div></div></section>
 
-<section class="section white"><div class="wrap"><div class="eyebrow">2 · Existing frameworks</div><h2>What is actually being classified?</h2><p class="lead">The literature contains many influential taxonomies and frameworks, but they answer different questions. The table keeps the authors' constructs separate before any synthesis is attempted.</p>
+<section class="section white toc-section" id="frameworks"><div class="wrap"><div class="eyebrow">2 · Existing frameworks</div><h2>What is actually being classified?</h2><p class="lead">The literature contains many influential taxonomies and frameworks, but they answer different questions. The table keeps the authors' constructs separate before any synthesis is attempted.</p>
 <div class="tablewrap"><table><thead><tr><th>Framework</th><th>Author(s) / Year</th><th>Original categories / concepts relevant here</th><th>What is actually being classified?</th><th>Use for Learning Situations</th><th>Why?</th></tr></thead><tbody>
 <tr><td>Learning Strategies: conceptual model</td><td><strong>Hattie &amp; Donoghue</strong> (2016)</td><td>Surface acquisition; surface consolidation; deep acquisition; deep consolidation; transfer</td><td>Phases of learning linked to strategy effectiveness</td><td><span class="tag green">Directly useful</span></td><td>Separates phases/purposes from the strategies that may support them; the closest single framework to our requirement.</td></tr>
 <tr><td>Knowledge-Learning-Instruction (KLI)</td><td><strong>Koedinger, Corbett &amp; Perfetti</strong> (2012)</td><td>Memory &amp; fluency building; induction &amp; refinement; understanding &amp; sense-making</td><td>Classes of learning events/processes</td><td><span class="tag green">Directly useful</span></td><td>Provides strong distinctions among what learning is accomplishing, although formally these are learning processes rather than learner situations.</td></tr>
@@ -61,13 +70,13 @@ html{scroll-padding-top:var(--sparks-navigation-height,190px)}
 </tbody></table></div>
 <p class="boundary">“Directly useful” does not mean that an author's category has been adopted unchanged. It means the framework helps distinguish learning purposes while leaving room to examine strategy choice. The final five below are our synthesis, not categories claimed by these authors as a single taxonomy.</p></div></section>
 
-<section class="section"><div class="wrap"><div class="eyebrow">3 · The difficult middle</div><h2>Why Practice and Consolidation stand out</h2><div class="excluded">
+<section class="section toc-section" id="practice-consolidation"><div class="wrap"><div class="eyebrow">3 · The difficult middle</div><h2>Why Practice and Consolidation stand out</h2><div class="excluded">
 <article class="card"><h3>Practice</h3><p>Practice describes something the learner does repeatedly. It can strengthen fluency, accuracy, retrieval or skill, but it already specifies an activity. For a strategy-neutral taxonomy this makes Practice look more like a means of learning than the purpose confronting the learner.</p></article>
 <article class="card"><h3>Consolidation</h3><p>Consolidation is theoretically important, particularly in Hattie and Donoghue's learning phases, but it describes the strengthening and stabilising of existing learning. As a learner-facing situation it is less homogeneous with goals such as understanding, applying or solving a problem. It remains relevant to the evidence base without currently being retained as a separate SPARKS Learning Situation.</p></article>
 </div>
 <div class="callout"><h3>Why exclusion matters</h3><p>A concept can be important to learning without belonging in this taxonomy. The test is not “does research support this concept?” but “does this describe what the learner is trying to accomplish while leaving the choice of strategy open?”</p></div></div></section>
 
-<section class="section white"><div class="wrap"><div class="eyebrow">4 · Current synthesis</div><h2>Five candidate Learning Situations</h2><p class="lead">After filtering the frameworks for purpose, conceptual level and strategy neutrality, five recurring learner purposes currently form the strongest working synthesis.</p>
+<section class="section white toc-section" id="five-situations"><div class="wrap"><div class="eyebrow">4 · Current synthesis</div><h2>Five candidate Learning Situations</h2><p class="lead">After filtering the frameworks for purpose, conceptual level and strategy neutrality, five recurring learner purposes currently form the strongest working synthesis.</p>
 <div class="situations">
 <article class="situation"><h3>Acquiring</h3><p>I need to learn something new.</p></article>
 <article class="situation"><h3>Understanding</h3><p>I need to make sense of something.</p></article>
@@ -77,7 +86,7 @@ html{scroll-padding-top:var(--sparks-navigation-height,190px)}
 </div>
 <div class="callout"><h3>Current status</h3><p>These five Learning Situations are a developing SPARKS synthesis derived from comparison of established learning frameworks. They are not presented as an established or validated taxonomy. In particular, the boundaries between Applying, Problem Solving and Transferring require further theoretical and empirical testing.</p></div></div></section>
 
-<section class="section"><div class="wrap"><div class="eyebrow">5 · What the five mean</div><h2>Keeping the boundaries visible</h2>
+<section class="section toc-section" id="boundaries"><div class="wrap"><div class="eyebrow">5 · What the five mean</div><h2>Keeping the boundaries visible</h2>
 <div class="tablewrap"><table><thead><tr><th>Situation</th><th>Learner purpose</th><th>Current boundary</th></tr></thead><tbody>
 <tr><td>Acquiring</td><td>Gain information or knowledge that is new to the learner.</td><td>Does not prescribe whether it is encountered visually, by listening, reading, discussion, writing or doing.</td></tr>
 <tr><td>Understanding</td><td>Make sense of information, relationships or concepts.</td><td>Concerned with meaning rather than merely exposure or recall.</td></tr>
@@ -87,7 +96,7 @@ html{scroll-padding-top:var(--sparks-navigation-height,190px)}
 </tbody></table></div>
 <p class="boundary">These learner-facing definitions are working SPARKS formulations informed by the literature; they are not quotations from the source authors.</p></div></section>
 
-<section class="section white"><div class="wrap"><div class="eyebrow">6 · Sources</div><h2>Research foundation</h2><ul class="refs">
+<section class="section white toc-section" id="sources"><div class="wrap"><div class="eyebrow">6 · Sources</div><h2>Research foundation</h2><ul class="refs">
 <li><strong>Hattie, J. A. C. &amp; Donoghue, G. M.</strong> (2016). Learning strategies: a synthesis and conceptual model. <em>npj Science of Learning, 1</em>, 16013. DOI: 10.1038/npjscilearn.2016.13.</li>
 <li><strong>Koedinger, K. R., Corbett, A. T. &amp; Perfetti, C.</strong> (2012). The Knowledge-Learning-Instruction Framework: Bridging the Science-Practice Chasm to Enhance Robust Student Learning. <em>Cognitive Science, 36</em>(5), 757–798. DOI: 10.1111/j.1551-6709.2012.01245.x.</li>
 <li><strong>Shuell, T. J.</strong> (1990). Phases of meaningful learning. <em>Review of Educational Research, 60</em>(4), 531–547.</li>
@@ -113,4 +122,9 @@ html{scroll-padding-top:var(--sparks-navigation-height,190px)}
 <footer class="footer"><div class="wrap">DidacticsLab · Practical tools for educators.</div></footer>
 <script>
 (()=>{const navigation=document.querySelector('.sparks-navigation');const update=()=>document.documentElement.style.setProperty('--sparks-navigation-height',`${navigation.getBoundingClientRect().height}px`);update();new ResizeObserver(update).observe(navigation)})();
-</script></body></html>
+</script><script>
+const links=[...document.querySelectorAll('.page-toc a')],sections=[...document.querySelectorAll('.toc-section')];
+function update(){if(!sections.length)return;const title=document.querySelector('.page-toc-title');const line=title?title.getBoundingClientRect().top-54:innerHeight/2-54;let current=sections[0];const atBottom=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2;if(atBottom){current=sections[sections.length-1]}else{for(const s of sections){if(s.getBoundingClientRect().top<=line)current=s;else break}}links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current.id))}
+let tick=false;addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(()=>{update();tick=false});tick=true}},{passive:true});addEventListener('resize',update);links.forEach(a=>a.addEventListener('click',()=>links.forEach(x=>x.classList.toggle('active',x===a))));update();
+</script>
+</body></html>
