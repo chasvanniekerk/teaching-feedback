@@ -16,17 +16,11 @@
 <div class="preferencegroup"><button type="button" class="groupbox" id="activeGroup"><b>Active / Productive</b><span>What does this mean?</span></button><div class="cards" id="activeCards"></div><div class="prefdetail" id="activeDetail" aria-live="polite"><div class="detail-label">Active / Productive preference</div><h4 id="activeDetailTitle">Discussing</h4><p id="activeDetailText"></p></div></div>
 <h3 class="sectiontitle">Five learning situations</h3><p class="muted">The questionnaire separates what you are trying to accomplish from how you prefer to learn. Each of the five Learning Situations is represented by four scenarios, giving 20 questions.</p>
 <div class="situationexplorer"><div class="situationgrid" id="situationCards"></div><div class="situationdetail" id="situationDetail" aria-live="polite"><div class="detail-label">Learning Situation</div><h4 id="situationDetailTitle">Acquiring</h4><p id="situationDetailText"></p></div></div>
-<div class="rulebox"><b>How you will answer</b><br>Select only the approaches you would genuinely use. You may leave any or all choices blank. Ranking is optional: if you genuinely prefer one selected approach over another you may rank them, and ties are allowed. Unselected approaches are not treated as being ranked last.</div>
-<div class="privacy">Private by design · your answers stay only in this page and are cleared when you leave or refresh it.</div>
-<div style="margin-top:22px"><button id="toPractice" class="btn primary" type="button">Try a practice question →</button></div>
+<div class="rulebox">You have now explored the six SPARKS Learning Preferences and the five Learning Situations. Before exploring your own preferences, check how well you understand the ideas you have just learned.</div>
+<div style="margin-top:22px"><a class="btn primary" href="sparks-knowledge-quiz.html" style="display:inline-block;text-decoration:none">Test what you learned →</a></div>
 <p class="fine">Development version. SPARKS is a reflective instrument under development, not a validated psychometric scale and not a claim that students should be taught according to a fixed “learning style”.</p>
 </section>
 
-<section id="practice" class="panel hidden"><div class="eyebrow">Practice</div><h2>Try the response method</h2><p class="muted">This practice item is not scored. The six responses are exactly the same in every assessment question; only the scenario changes.</p><div class="situationtag">Practice item</div><h3 class="question">You need to learn about an unfamiliar topic for an upcoming lesson.</h3><div class="hint">Select what you would actually use. You may select none, one or several. Ranking is optional and ties are allowed.</div><div id="practiceOptions" class="options"></div><p class="practiceNote">Tip: do not select an approach just because it is available. If two selected approaches are equally preferred, leave both unranked or give them the same rank.</p><div class="qactions"><button id="backTraining" class="btn secondary" type="button">← Learning Preferences</button><button id="begin" class="btn primary" type="button">Start 20 questions →</button></div></section>
-
-<section id="quiz" class="panel hidden"><div class="qmeta"><span id="count"></span><span>20 questions</span></div><div class="progressline"><div id="progress" class="progressfill"></div></div><div id="situationTag" class="situationtag"></div><h2 id="question" class="question"></h2><div class="hint">Which approaches would you actually use? Select only those that apply. You may leave choices blank. Ranking is optional; ties are allowed.</div><div id="options" class="options"></div><div class="qactions"><button id="back" class="btn secondary" type="button">← Back</button><button id="next" class="btn primary" type="button" disabled>Next →</button></div></section>
-
-<section id="results" class="panel hidden"><div class="results-head"><div class="eyebrow">Your SPARKS profile</div><h2>Your learning preference pattern</h2><p class="result-note">The main profile shows how often you selected each approach across the 20 scenarios. Each approach had four opportunities within each Learning Situation. Optional rankings are additional preference information and do not turn unselected approaches into lower-ranked choices.</p></div><div id="profile" class="profile"></div><div class="matrix"><h3>Selections by learning situation</h3><table><thead><tr><th>Situation</th><th>V</th><th>L</th><th>R</th><th>D</th><th>W</th><th>K</th></tr></thead><tbody id="matrixBody"></tbody></table></div><div id="reflection" class="reflection"></div><div class="qactions"><button id="restart" class="btn secondary" type="button">Start again</button><button id="print" class="btn primary" type="button">Print / Save as PDF</button></div><p class="fine">Nothing is sent to DidacticsLab. Refreshing, closing or leaving this page clears the responses.</p></section>
 </div></main><footer class="footer"><div class="wrap">DidacticsLab · SPARKS is a developing framework.</div></footer>
 
 <script>
@@ -46,91 +40,19 @@ const S=[
 {n:"Problem Solving",d:"Resolve something where the solution is not immediately known.",e:"You are trying to resolve a problem where the answer or method is not immediately clear. You may need to investigate what is happening, consider different possibilities and decide how your existing knowledge could help."},
 {n:"Transferring",d:"Use what you learned in a different situation.",e:"You need to take knowledge or skills learned in one context and use them in another. The new situation is different enough that you cannot simply repeat exactly what you did before; you need to recognise what remains relevant and adapt it."}
 ];
-const Q=[
-["Acquiring","You need to learn about a topic that is completely new to you."],
-["Acquiring","You need to learn the main ideas of a subject you have not studied before."],
-["Acquiring","You need to learn new information before starting a new course or project."],
-["Acquiring","You need to become familiar with an unfamiliar concept for the first time."],
-["Understanding","You have learned the basic facts about a topic, but you need to understand how they fit together."],
-["Understanding","You know what a concept is, but you need to understand why it works the way it does."],
-["Understanding","You have learned several ideas about a subject, but you need to understand the relationships between them."],
-["Understanding","You are familiar with a topic, but part of it still does not make sense to you."],
-["Applying","You have learned a method and now need to use it to complete a task."],
-["Applying","You have learned a procedure and now need to use it correctly."],
-["Applying","You know a principle and now need to use it in an example."],
-["Applying","You have learned how something works and now need to use that knowledge to complete an activity."],
-["Problem Solving","You are faced with a problem and do not immediately know how to solve it."],
-["Problem Solving","Something is not working as expected and you need to determine what is causing the problem."],
-["Problem Solving","You need to achieve a particular result, but it is not clear which approach will work."],
-["Problem Solving","You encounter a difficulty where several possible solutions could be considered."],
-["Transferring","You need to use something you learned in one subject in a different subject."],
-["Transferring","You need to use something you learned in class in a real-life situation."],
-["Transferring","You need to use knowledge learned for one type of task to complete a different type of task."],
-["Transferring","You recognise that something you learned previously could be useful in a new situation."]
-];
 const receptiveCards=document.querySelector("#receptiveCards"),activeCards=document.querySelector("#activeCards"),sitCards=document.querySelector("#situationCards");
 function prefButton(x,i){return '<button type="button" class="learncard" data-pref="'+i+'"><b>'+x.c+' · '+x.n+'</b><p>'+x.t+'</p></button>'}
 receptiveCards.innerHTML=P.slice(0,3).map((x,i)=>prefButton(x,i)).join("");
 activeCards.innerHTML=P.slice(3).map((x,i)=>prefButton(x,i+3)).join("");
-function wirePreferenceGroup(container,titleEl,textEl,defaultIndex){
- function showPref(i){const x=P[i];titleEl.textContent=x.n;textEl.textContent=x.e;container.querySelectorAll(".learncard").forEach(el=>el.classList.toggle("active",Number(el.dataset.pref)===i))}
- showPref(defaultIndex);
- container.querySelectorAll(".learncard").forEach(el=>{const i=Number(el.dataset.pref);el.addEventListener("mouseenter",()=>showPref(i));el.addEventListener("focus",()=>showPref(i));el.addEventListener("click",()=>showPref(i))});
-}
+function wirePreferenceGroup(container,titleEl,textEl,defaultIndex){function showPref(i){const x=P[i];titleEl.textContent=x.n;textEl.textContent=x.e;container.querySelectorAll(".learncard").forEach(el=>el.classList.toggle("active",Number(el.dataset.pref)===i))}showPref(defaultIndex);container.querySelectorAll(".learncard").forEach(el=>{const i=Number(el.dataset.pref);el.addEventListener("mouseenter",()=>showPref(i));el.addEventListener("focus",()=>showPref(i));el.addEventListener("click",()=>showPref(i))})}
 wirePreferenceGroup(receptiveCards,document.querySelector("#receptiveDetailTitle"),document.querySelector("#receptiveDetailText"),0);
 wirePreferenceGroup(activeCards,document.querySelector("#activeDetailTitle"),document.querySelector("#activeDetailText"),3);
-function wireGroupExplanation(buttonId,titleEl,textEl,title,text,container,defaultIndex){
- const button=document.querySelector(buttonId);
- function show(){titleEl.textContent=title;textEl.textContent=text;button.classList.add("active");container.querySelectorAll(".learncard").forEach(el=>el.classList.remove("active"))}
- function restore(){button.classList.remove("active");const x=P[defaultIndex];titleEl.textContent=x.n;textEl.textContent=x.e;container.querySelectorAll(".learncard").forEach(el=>el.classList.toggle("active",Number(el.dataset.pref)===defaultIndex))}
- button.addEventListener("mouseenter",show);
- button.addEventListener("mouseleave",restore);
- button.addEventListener("focus",show);
- button.addEventListener("blur",restore);
- button.addEventListener("click",show);
-}
+function wireGroupExplanation(buttonId,titleEl,textEl,title,text,container,defaultIndex){const button=document.querySelector(buttonId);function show(){titleEl.textContent=title;textEl.textContent=text;button.classList.add("active");container.querySelectorAll(".learncard").forEach(el=>el.classList.remove("active"))}function restore(){button.classList.remove("active");const x=P[defaultIndex];titleEl.textContent=x.n;textEl.textContent=x.e;container.querySelectorAll(".learncard").forEach(el=>el.classList.toggle("active",Number(el.dataset.pref)===defaultIndex))}button.addEventListener("mouseenter",show);button.addEventListener("mouseleave",restore);button.addEventListener("focus",show);button.addEventListener("blur",restore);button.addEventListener("click",show)}
 wireGroupExplanation("#receptiveGroup",document.querySelector("#receptiveDetailTitle"),document.querySelector("#receptiveDetailText"),"Passive / Receptive","These strategies focus on receiving information. You encounter information by seeing it, listening to it or reading it. “Passive” does not mean that your brain is inactive; you may still be concentrating, interpreting and connecting ideas. It describes your role in relation to the information: at this point, you are primarily taking information in.",receptiveCards,0);
 wireGroupExplanation("#activeGroup",document.querySelector("#activeDetailTitle"),document.querySelector("#activeDetailText"),"Active / Productive","These strategies focus on doing something with information. You work with what you know by discussing it, putting it into writing, or trying and applying it yourself. “Productive” means that you are producing a response, explanation, action or application rather than only receiving information.",activeCards,3);
 sitCards.innerHTML=S.map((x,i)=>'<button type="button" class="sitcard '+(i===0?'active':'')+'" data-situation="'+i+'"><b>'+x.n+'</b><p>'+x.d+'</p></button>').join("");
 const detailTitle=document.querySelector("#situationDetailTitle"),detailText=document.querySelector("#situationDetailText");
 function showSituation(i){const x=S[i];detailTitle.textContent=x.n;detailText.textContent=x.e;sitCards.querySelectorAll(".sitcard").forEach((el,j)=>el.classList.toggle("active",j===i))}
-showSituation(0);
-sitCards.querySelectorAll(".sitcard").forEach((el,i)=>{el.addEventListener("mouseenter",()=>showSituation(i));el.addEventListener("focus",()=>showSituation(i));el.addEventListener("click",()=>showSituation(i))});
-
-function blank(){return {selected:[],ranks:{}}}
-let idx=0,answers=Array.from({length:Q.length},blank),practice=blank();
-const training=document.querySelector("#training"),practiceSec=document.querySelector("#practice"),quiz=document.querySelector("#quiz"),results=document.querySelector("#results");
-const options=document.querySelector("#options"),question=document.querySelector("#question"),tag=document.querySelector("#situationTag"),count=document.querySelector("#count"),progress=document.querySelector("#progress"),next=document.querySelector("#next"),back=document.querySelector("#back");
-
-function optionHTML(state,i,prefix){
- const selected=state.selected.includes(p.c);
- const rank=state.ranks[p.c]??"";
- return '<div class="option '+(selected?'selected':'')+'" data-code="'+p.c+'"><button class="pick" type="button" aria-label="Select '+p.n+'">'+(selected?'✓':p.c)+'</button><div class="opttext"><b>'+p.n+'</b><span>'+p.t+'</span></div><div class="rank"><label for="'+prefix+'rank'+i+'">Rank</label><select id="'+prefix+'rank'+i+'" aria-label="Optional rank for '+p.n+'"><option value="">Equal / not ranked</option>'+[1,2,3,4,5,6].map(n=>'<option value="'+n+'" '+(String(rank)===String(n)?'selected':'')+'>'+n+'</option>').join("")+'</select></div></div>';
-}
-function wire(container,state,rerender){
- container.querySelectorAll(".option").forEach((el,i)=>{
-  const code=el.dataset.code;
-  el.querySelector(".pick").addEventListener("click",()=>{const pos=state.selected.indexOf(code);if(pos>=0){state.selected.splice(pos,1);delete state.ranks[code]}else state.selected.push(code);rerender()});
-  const sel=el.querySelector("select");if(sel)sel.addEventListener("change",e=>{if(e.target.value==="")delete state.ranks[code];else state.ranks[code]=Number(e.target.value)});
- });
-}
-function renderPractice(){document.querySelector("#practiceOptions").innerHTML=P.map((p,i)=>optionHTML(practice,i,"p")).join("");wire(document.querySelector("#practiceOptions"),practice,renderPractice);document.querySelector("#begin").disabled=false}
-function show(){const x=Q[idx],state=answers[idx];count.textContent='Question '+(idx+1);progress.style.width=(idx/Q.length*100)+'%';tag.textContent=x[0];question.textContent=x[1];options.innerHTML=P.map((p,i)=>optionHTML(state,i,"q")).join("");wire(options,state,show);back.disabled=idx===0;next.disabled=false;next.textContent=idx===Q.length-1?'See my profile →':'Next →'}
-function finish(){
- const total=Object.fromEntries(P.map(p=>[p.c,0]));const by=Object.fromEntries(S.map(s=>[s.n,Object.fromEntries(P.map(p=>[p.c,0]))]));
- answers.forEach((a,i)=>a.selected.forEach(c=>{total[c]++;by[Q[i][0]][c]++}));
- quiz.classList.add("hidden");results.classList.remove("hidden");
- document.querySelector("#profile").innerHTML=P.map(p=>'<div class="metric"><div class="metric-name"><span class="letter">'+p.c+'</span><span>'+p.n+'</span></div><div class="bartrack"><div class="barfill" style="width:'+(total[p.c]/20*100)+'%"></div></div><div class="score">'+total[p.c]+' / 20</div></div>').join("");
- document.querySelector("#matrixBody").innerHTML=S.map(s=>'<tr><td>'+s.n+'</td>'+P.map(p=>'<td>'+by[s.n][p.c]+' / 4</td>').join("")+'</tr>').join("");
- const max=Math.max(...Object.values(total));const top=P.filter(p=>total[p.c]===max).map(p=>p.n);
- document.querySelector("#reflection").textContent='Across these 20 situations, you selected '+top.join(" and ")+' most often. Look at the situation table as well: a preference that is strong overall may be more or less useful to you depending on what you are trying to learn. This is an indication of your current choices, not a fixed learner type.';
-}
-document.querySelector("#toPractice").addEventListener("click",()=>{training.classList.add("hidden");practiceSec.classList.remove("hidden");renderPractice()});
-document.querySelector("#backTraining").addEventListener("click",()=>{practiceSec.classList.add("hidden");training.classList.remove("hidden")});
-document.querySelector("#begin").addEventListener("click",()=>{practiceSec.classList.add("hidden");quiz.classList.remove("hidden");show()});
-next.addEventListener("click",()=>{if(idx<Q.length-1){idx++;show()}else finish()});
-back.addEventListener("click",()=>{if(idx>0){idx--;show()}});
-document.querySelector("#restart").addEventListener("click",()=>{answers=Array.from({length:Q.length},blank);practice=blank();idx=0;results.classList.add("hidden");training.classList.remove("hidden");window.scrollTo(0,0)});
-document.querySelector("#print").addEventListener("click",()=>window.print());
+showSituation(0);sitCards.querySelectorAll(".sitcard").forEach((el,i)=>{el.addEventListener("mouseenter",()=>showSituation(i));el.addEventListener("focus",()=>showSituation(i));el.addEventListener("click",()=>showSituation(i))});
 })();
 </script></body></html>
