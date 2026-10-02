@@ -17,9 +17,15 @@
 .sparks-pages-links a:focus-visible{outline:3px solid #255fa8;outline-offset:3px}
 @media(max-width:600px){.sparks-pages{padding:16px 0}.sparks-pages-links{gap:7px}.sparks-pages-links a{padding:10px 12px;font-size:14px}}
 @media print{.sparks-pages{display:none}}
+
+.sparks-navigation{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 2px 8px rgba(24,33,43,.06)}
+.sparks-navigation>.nav{position:static}
+html{scroll-padding-top:var(--sparks-navigation-height,190px)}
+.toc-section{scroll-margin-top:16px}
+@media print{.sparks-navigation{display:none}}
 </style></head><body>
-<header class="nav"><div class="wrap navin"><a class="brand" href="index.html">DidacticsLab</a><a href="tools.html">Tools</a><a href="about.html">About</a><span>EN</span></div></header>
-<nav class="sparks-pages" aria-label="SPARKS for Students pages"><div class="wrap"><p class="sparks-pages-title">SPARKS for Students</p><ul class="sparks-pages-links"><li><a href="sparks-learning-preferences.html" aria-current="page">Learning Preferences &amp; Situations</a></li><li><a href="sparks-knowledge-quiz.html">Knowledge Quiz</a></li><li><a href="sparks-preference-survey.html">My Learning Preferences</a></li></ul></div></nav>
+<div class="sparks-navigation"><header class="nav"><div class="wrap navin"><a class="brand" href="index.html">DidacticsLab</a><a href="tools.html">Tools</a><a href="about.html">About</a><span>EN</span></div></header>
+<nav class="sparks-pages" aria-label="SPARKS for Students pages"><div class="wrap"><p class="sparks-pages-title">SPARKS for Students</p><ul class="sparks-pages-links"><li><a href="sparks-learning-preferences.html" aria-current="page">Learning Preferences &amp; Situations</a></li><li><a href="sparks-knowledge-quiz.html">Knowledge Quiz</a></li><li><a href="sparks-preference-survey.html">My Learning Preferences</a></li></ul></div></nav></div>
 
 <section class="hero"><div class="wrap"><div class="eyebrow">Learning Preferences</div><h1>Learning Preferences & Learning Situations</h1><h2 style="font-size:24px;margin:22px 0 10px">Do you know how you prefer to learn?</h2><p>You probably don't approach every kind of learning in the same way. When learning something completely new, you might prefer to read about it or listen to someone explain it. When trying to solve a difficult problem, you might prefer to discuss it with someone. When applying what you have learned, you might prefer to try it yourself.</p><p style="margin-top:16px">These are your learning preferences — the ways you prefer to approach learning. But your preferences may also depend on what you are trying to achieve. We call these different purposes Learning Situations.</p><h2 style="font-size:24px;margin:28px 0 10px">Why is this useful?</h2><p>Understanding your learning preferences can help you become more aware of how you approach learning. Instead of automatically studying in the same way every time, you can ask yourself: <em>“What am I trying to learn, and how would I prefer to approach it?”</em></p><p style="margin-top:16px">A preference tells you what you tend to choose. It does not prove that one method is always the best way for you to learn. The purpose of this page is to help you recognise your own patterns and think more deliberately about the approaches available to you.</p></div></section>
 <main class="main"><div class="wrap">
@@ -69,4 +75,6 @@ const detailTitle=document.querySelector("#situationDetailTitle"),detailText=doc
 function showSituation(i){const x=S[i];detailTitle.textContent=x.n;detailText.textContent=x.e;sitCards.querySelectorAll(".sitcard").forEach((el,j)=>el.classList.toggle("active",j===i))}
 showSituation(0);sitCards.querySelectorAll(".sitcard").forEach((el,i)=>{el.addEventListener("mouseenter",()=>showSituation(i));el.addEventListener("focus",()=>showSituation(i));el.addEventListener("click",()=>showSituation(i))});
 })();
+</script><script>
+(()=>{const navigation=document.querySelector('.sparks-navigation');const update=()=>document.documentElement.style.setProperty('--sparks-navigation-height',`${navigation.getBoundingClientRect().height}px`);update();new ResizeObserver(update).observe(navigation)})();
 </script></body></html>

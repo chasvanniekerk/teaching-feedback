@@ -20,11 +20,17 @@
 .sparks-pages-links a:focus-visible{outline:3px solid #255fa8;outline-offset:3px}
 @media(max-width:600px){.sparks-pages{padding:16px 0}.sparks-pages-links{gap:7px}.sparks-pages-links a{padding:10px 12px;font-size:14px}}
 @media print{.sparks-pages{display:none}}
+
+.sparks-navigation{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 2px 8px rgba(24,33,43,.06)}
+.sparks-navigation>.nav{position:static}
+html{scroll-padding-top:var(--sparks-navigation-height,190px)}
+.toc-section{scroll-margin-top:16px}
+@media print{.sparks-navigation{display:none}}
 </style>
 </head>
 <body>
-<header class="nav"><div class="wrap navin"><a class="brand" href="index.html">DidacticsLab</a><nav class="links"><a href="tools.html">Tools</a><a href="about.html">About</a></nav><div class="lang">EN</div></div></header>
-<nav class="sparks-pages" aria-label="SPARKS for Teachers pages"><div class="wrap"><p class="sparks-pages-title">SPARKS for Teachers</p><ul class="sparks-pages-links"><li><a href="learning-preferences.html">Understanding SPARKS</a></li><li><a href="applying-sparks.html" aria-current="page">Applying SPARKS</a></li><li><a href="learning-situations.html">Learning Situations</a></li><li><a href="sparks-lesson-designer.html">Lesson Designer</a></li></ul></div></nav>
+<div class="sparks-navigation"><header class="nav"><div class="wrap navin"><a class="brand" href="index.html">DidacticsLab</a><nav class="links"><a href="tools.html">Tools</a><a href="about.html">About</a></nav><div class="lang">EN</div></div></header>
+<nav class="sparks-pages" aria-label="SPARKS for Teachers pages"><div class="wrap"><p class="sparks-pages-title">SPARKS for Teachers</p><ul class="sparks-pages-links"><li><a href="learning-preferences.html">Understanding SPARKS</a></li><li><a href="applying-sparks.html" aria-current="page">Applying SPARKS</a></li><li><a href="learning-situations.html">Learning Situations</a></li><li><a href="sparks-lesson-designer.html">Lesson Designer</a></li></ul></div></nav></div>
 
 <aside class="page-toc" aria-label="On this page"><div class="page-toc-title">On this page</div><nav>
 <a href="#overload">1. Cognitive overload</a>
@@ -106,4 +112,6 @@ const links=[...document.querySelectorAll('.page-toc a')],sections=[...document.
 function update(){if(!sections.length)return;const title=document.querySelector('.page-toc-title');const line=title?title.getBoundingClientRect().top-54:innerHeight/2-54;let current=sections[0];const atBottom=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2;if(atBottom){current=sections[sections.length-1]}else{for(const s of sections){if(s.getBoundingClientRect().top<=line)current=s;else break}}links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+current.id))}
 let tick=false;addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(()=>{update();tick=false});tick=true}},{passive:true});addEventListener('resize',update);links.forEach(a=>a.addEventListener('click',()=>links.forEach(x=>x.classList.toggle('active',x===a))));update();
 </script>
-</body></html>
+<script>
+(()=>{const navigation=document.querySelector('.sparks-navigation');const update=()=>document.documentElement.style.setProperty('--sparks-navigation-height',`${navigation.getBoundingClientRect().height}px`);update();new ResizeObserver(update).observe(navigation)})();
+</script></body></html>

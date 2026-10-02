@@ -20,10 +20,16 @@
 .sparks-pages-links a:focus-visible{outline:3px solid #255fa8;outline-offset:3px}
 @media(max-width:600px){.sparks-pages{padding:16px 0}.sparks-pages-links{gap:7px}.sparks-pages-links a{padding:10px 12px;font-size:14px}}
 @media print{.sparks-pages{display:none}}
+
+.sparks-navigation{position:sticky;top:0;z-index:10;background:#fff;box-shadow:0 2px 8px rgba(24,33,43,.06)}
+.sparks-navigation>.nav{position:static}
+html{scroll-padding-top:var(--sparks-navigation-height,190px)}
+.toc-section{scroll-margin-top:16px}
+@media print{.sparks-navigation{display:none}}
 </style></head>
 <body>
-<header class="nav"><div class="wrap navin"><a class="brand" href="index.html">DidacticsLab</a><a href="tools.html">Tools</a><a href="about.html">About</a><span>EN</span></div></header>
-<nav class="sparks-pages" aria-label="SPARKS for Teachers pages"><div class="wrap"><p class="sparks-pages-title">SPARKS for Teachers</p><ul class="sparks-pages-links"><li><a href="learning-preferences.html">Understanding SPARKS</a></li><li><a href="applying-sparks.html">Applying SPARKS</a></li><li><a href="learning-situations.html">Learning Situations</a></li><li><a href="sparks-lesson-designer.html" aria-current="page">Lesson Designer</a></li></ul></div></nav>
+<div class="sparks-navigation"><header class="nav"><div class="wrap navin"><a class="brand" href="index.html">DidacticsLab</a><a href="tools.html">Tools</a><a href="about.html">About</a><span>EN</span></div></header>
+<nav class="sparks-pages" aria-label="SPARKS for Teachers pages"><div class="wrap"><p class="sparks-pages-title">SPARKS for Teachers</p><ul class="sparks-pages-links"><li><a href="learning-preferences.html">Understanding SPARKS</a></li><li><a href="applying-sparks.html">Applying SPARKS</a></li><li><a href="learning-situations.html">Learning Situations</a></li><li><a href="sparks-lesson-designer.html" aria-current="page">Lesson Designer</a></li></ul></div></nav></div>
 
 <section class="hero"><div class="wrap"><div class="eyebrow">SPARKS · Practical tool</div><h1>SPARKS Lesson Designer</h1><p>Map what learners are receiving and producing across a lesson. The timeline makes the six SPARKS strategies visible so you can examine sequence, overlap and opportunities for productive learning.</p><div class="privacy">Private by design · nothing you enter is saved or sent to DidacticsLab</div></div></section>
 <main class="main"><div class="wrap">
@@ -48,4 +54,6 @@ function renderInsights(vr,dur){const points=new Set([0,dur]);vr.forEach(r=>{poi
 root.querySelector('#add').addEventListener('click',()=>addRow());root.querySelector('#clear').addEventListener('click',()=>{rows=[];renderRows();update()});durationEl.addEventListener('input',update);root.querySelector('#print').addEventListener('click',()=>window.print());
 addRow({start:'0',end:'10',activity:'Explain a new concept',strategies:['V','L']});addRow({start:'10',end:'13',activity:'Reconstruct the key idea',strategies:['W']});addRow({start:'13',end:'20',activity:'Discuss the explanation',strategies:['D']});
 })();
+</script><script>
+(()=>{const navigation=document.querySelector('.sparks-navigation');const update=()=>document.documentElement.style.setProperty('--sparks-navigation-height',`${navigation.getBoundingClientRect().height}px`);update();new ResizeObserver(update).observe(navigation)})();
 </script></body></html>
