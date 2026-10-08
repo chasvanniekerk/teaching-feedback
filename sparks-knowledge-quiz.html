@@ -18,10 +18,17 @@
 html{scroll-padding-top:var(--sparks-navigation-height,190px)}
 .toc-section{scroll-margin-top:16px}
 @media print{.sparks-navigation{display:none}}
+
+/* SPARKS development notice */
+.sparks-development-notice{box-sizing:border-box;max-width:1100px;margin:18px auto 12px;padding:13px 18px;border:1px solid #b8c8d5;border-left:4px solid #56758d;border-radius:8px;background:#f3f7fa;color:#243b4c;font:normal 14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.sparks-development-notice p{margin:0}
+.sparks-development-notice .notice-heading{font-weight:600;margin-bottom:3px}
+@media(max-width:1140px){.sparks-development-notice{margin-left:16px;margin-right:16px}}
 </style></head><body><div class="sparks-navigation"><header class="nav"><div class="wrap navin"><a class="brand" href="index.html">DidacticsLab</a><a href="tools.html">Tools</a><a href="about.html">About</a><span>EN</span></div></header>
 <nav class="sparks-pages" aria-label="SPARKS for Students pages"><div class="wrap"><p class="sparks-pages-title">SPARKS for Students</p><ul class="sparks-pages-links"><li><a href="sparks-learning-preferences.html">Learning Preferences &amp; Situations</a></li><li><a href="sparks-knowledge-quiz.html" aria-current="page">Knowledge Quiz</a></li><li><a href="sparks-preference-survey.html">My Learning Preferences</a></li></ul></div></nav></div>
 
 <section class="hero"><div class="wrap"><div class="eyebrow">Check your understanding</div><h1>What did you learn about SPARKS?</h1><p>This quiz checks the ideas you have just explored: why learning preferences can be useful, Passive / Receptive and Active / Productive strategies, VLR–DWK, and Learning Situations. It is a learning check, not an exam.</p></div></section>
+<aside class="sparks-development-notice" role="note" aria-label="SPARKS development status"><p class="notice-heading">Model in development</p><p>SPARKS is a model in development. Its concepts, questionnaire and results are being explored and refined. The model has not yet been scientifically validated, and results should be interpreted as indications of learning preferences, not as diagnoses or fixed learning styles.</p></aside>
 <main class="main"><div class="wrap"><section class="panel" id="quiz"><div class="meta"><span id="count"></span><span>12 questions</span></div><div class="progress"><div class="fill" id="fill"></div></div><h2 class="question" id="question"></h2><div class="answers" id="answers"></div><div class="feedback hidden" id="feedback"></div><div class="actions"><a class="btn secondary" href="sparks-learning-preferences.html">← Review the learning</a><button class="btn primary hidden" id="next">Next →</button></div></section>
 <section class="panel hidden score" id="result"><div class="eyebrow">Knowledge check complete</div><h2 id="score"></h2><p class="muted">Your score is simply feedback on what you understood today. There is no pass mark. You can review the learning, try the quiz again, or continue to explore your own learning preferences.</p><div class="actions" style="justify-content:center"><button class="btn secondary" id="again">Try quiz again</button><a class="btn primary" href="sparks-preference-survey.html">Explore my Learning Preferences →</a></div><p class="fine">Your quiz answers stay in this page only and are not sent to DidacticsLab.</p></section></div></main><footer class="footer"><div class="wrap">DidacticsLab · SPARKS is a developing framework.</div></footer>
 <script>(()=>{const Q=[
