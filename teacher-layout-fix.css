@@ -1,0 +1,26 @@
+/* Unified navigation for SPARKS teacher pages; dedicated non-overlapping TOC column */
+@media(min-width:1200px){
+body:has(.page-toc) .sparks-navigation .navin{width:min(1560px,calc(100% - 48px));max-width:100%;display:flex;flex-wrap:nowrap;align-items:center;gap:12px;min-height:76px;height:auto;padding:9px 0}
+body:has(.page-toc) .sparks-navigation .brand{margin-right:8px;flex-shrink:0;font-size:21px}
+body:has(.page-toc) .sparks-navigation .sparks-inline-links{flex:1 1 auto;min-width:0}
+body:has(.page-toc) .sparks-inline-links .sparks-pages-links{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px;list-style:none;margin:0;padding:0}
+body:has(.page-toc) .sparks-inline-links a{display:inline-block;padding:9px 10px;font-size:13px!important;line-height:1.25;text-decoration:none;color:#255fa8;border:1px solid #dfe5ea;border-radius:9px;white-space:normal}
+body:has(.page-toc) .sparks-inline-links a[aria-current="page"]{background:#255fa8;border-color:#255fa8;color:#fff}
+body:has(.page-toc) .sparks-navigation .links{flex-shrink:0;gap:14px}
+body:has(.page-toc) .sparks-navigation .lang{flex-shrink:0}
+body:has(.page-toc) .page-toc{position:fixed!important;left:18px!important;top:calc(var(--sparks-navigation-height,76px) + 24px)!important;transform:none!important;width:205px!important;max-height:calc(100vh - var(--sparks-navigation-height,76px) - 42px);overflow-y:auto;z-index:4}
+body:has(.page-toc) main .wrap,body:has(.page-toc) .hero .wrap{width:min(1050px,calc(100% - 290px))!important;max-width:calc(100% - 290px)!important;margin-left:max(265px,calc((100% - 1050px)/2))!important;margin-right:auto!important}
+body:has(.page-toc) .sparks-development-notice{margin-left:max(265px,calc((100% - 1050px)/2))!important;margin-right:24px!important;width:min(1050px,calc(100% - 290px))!important;max-width:calc(100% - 290px)!important}
+}
+@media(max-width:1199px){
+body:has(.page-toc) .sparks-navigation .navin{display:flex;flex-wrap:wrap;gap:9px;padding:12px 0;height:auto}
+body:has(.page-toc) .sparks-inline-links{flex-basis:100%;order:3}
+body:has(.page-toc) .sparks-inline-links .sparks-pages-links{list-style:none;display:flex;flex-wrap:wrap;gap:7px;padding:0;margin:0}
+body:has(.page-toc) .sparks-inline-links a{display:inline-block;padding:7px 10px;border:1px solid #dfe5ea;border-radius:8px;text-decoration:none;color:#255fa8;font-size:13px}
+body:has(.page-toc) .sparks-inline-links a[aria-current="page"]{background:#255fa8;color:#fff}
+body:has(.page-toc) .page-toc{display:block!important;position:static!important;transform:none!important;width:auto!important;max-width:none!important;margin:14px 16px;padding:12px;background:#fff;border:1px solid #dfe5ea;border-radius:10px}
+body:has(.page-toc) .page-toc nav{display:flex;flex-wrap:wrap;gap:4px;border:0}
+body:has(.page-toc) .page-toc a{padding:7px 9px}
+body:has(.page-toc) main .wrap,body:has(.page-toc) .hero .wrap{margin-left:auto!important;margin-right:auto!important;max-width:100%!important}
+body:has(.page-toc) .sparks-development-notice{max-width:calc(100% - 32px)!important;margin:16px auto!important}
+}
