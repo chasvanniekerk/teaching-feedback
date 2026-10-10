@@ -1,0 +1,35 @@
+/* Learner pages follow the established teacher layout. */
+.sparks-learner-page .hero{padding:86px 0 68px;background:#fff}
+.sparks-learner-page .hero h1{font-size:54px;line-height:1.04;letter-spacing:-1.8px;max-width:850px;margin:0 0 20px}
+.sparks-learner-page .hero p{font-size:20px;line-height:1.6;color:#46515c;max-width:820px;margin:0}
+.sparks-learner-page .main{padding:72px 0}
+.sparks-learner-page .links{display:flex;gap:24px;flex-shrink:0}
+.sparks-learner-page .links a{color:#56616c;text-decoration:none;font-size:15px}
+.sparks-learner-page .sparks-header-pages{order:0;flex:1 1 auto;min-width:0}
+.sparks-learner-page .sparks-header-pages a{font-weight:400}
+@media(min-width:1200px){
+.sparks-learner-page .sparks-navigation .navin{width:min(1560px,calc(100% - 48px));max-width:100%;flex-wrap:nowrap;gap:12px;min-height:76px;padding:9px 0}
+.sparks-learner-page .sparks-navigation .brand{margin-right:8px;font-size:21px}
+.sparks-learner-page .sparks-header-pages .sparks-pages-links{gap:6px;justify-content:center}
+.sparks-learner-page .sparks-header-pages a{padding:9px 10px;font-size:13px!important}
+.sparks-learner-page .links{gap:14px}
+.sparks-learner-page .didactics-language{flex-shrink:0}
+.sparks-learner-page .hero .wrap,.sparks-learner-page main .wrap{width:min(1050px,calc(100% - 40px));max-width:100%;margin:auto}
+.sparks-learner-page .sparks-development-notice{width:min(1050px,calc(100% - 40px));max-width:100%;margin:18px auto 12px}
+.sparks-learner-page .reading-toc{left:18px;top:calc(var(--sparks-navigation-height,76px) + 24px);transform:none;width:205px;max-height:calc(100vh - var(--sparks-navigation-height,76px) - 42px)}
+.sparks-learner-page:has(.reading-toc) main{max-width:100%}
+.sparks-learner-page:has(.reading-toc) main .wrap,.sparks-learner-page:has(.reading-toc) .hero .wrap,.sparks-learner-page:has(.reading-toc) .sparks-development-notice{width:min(1050px,calc(100% - 290px));max-width:calc(100% - 290px);margin-left:max(265px,calc((100% - 1050px)/2));margin-right:auto}
+}
+@media(max-width:1199px){
+.sparks-learner-page .sparks-navigation .navin{display:flex;flex-wrap:wrap;gap:9px;padding:12px 0;height:auto}
+.sparks-learner-page .sparks-header-pages{flex-basis:100%;order:3}
+.sparks-learner-page .sparks-header-pages .sparks-pages-links{justify-content:flex-start;gap:7px}
+.sparks-learner-page .sparks-header-pages a{padding:7px 10px;font-size:13px!important;border-radius:8px}
+.sparks-learner-page .reading-toc{display:block;position:static;transform:none;width:auto;max-width:none;max-height:none;margin:14px 16px;padding:12px;background:#fff;border:1px solid #dfe5ea;border-radius:10px}
+.sparks-learner-page .reading-toc nav{display:flex;flex-wrap:wrap;gap:4px;border:0}
+.sparks-learner-page .reading-toc a{padding:7px 9px}
+.sparks-learner-page:has(.reading-toc) main{max-width:100%}
+.sparks-learner-page main .wrap,.sparks-learner-page .hero .wrap{margin-left:auto!important;margin-right:auto!important;max-width:100%!important}
+.sparks-learner-page .sparks-development-notice{max-width:calc(100% - 32px);margin:16px auto}
+}
+@media(max-width:760px){.sparks-learner-page .hero{padding:58px 0}.sparks-learner-page .hero h1{font-size:40px}.sparks-learner-page .main{padding:50px 0}}
