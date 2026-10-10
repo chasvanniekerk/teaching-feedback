@@ -40,6 +40,13 @@
     a.title = exists ? ({en:'English',nl:'Nederlands',es:'Español'}[lang]) : ({en:'Open English homepage (translation pending)',nl:'Open Nederlandse startpagina (vertaling volgt)',es:'Abrir la página de inicio en español (traducción pendiente)'}[lang]);
     if (lang===current) {a.setAttribute('aria-current','page');a.style.cssText='color:#255fa8;text-decoration:underline;text-underline-offset:3px'}
     else a.style.cssText='color:#46515c;text-decoration:none';
+    if (lang !== 'en') {
+      const divider = document.createElement('span');
+      divider.textContent = '|';
+      divider.setAttribute('aria-hidden','true');
+      divider.style.color = '#8b98a4';
+      nav.appendChild(divider);
+    }
     nav.appendChild(a);
   }
   if (header) header.appendChild(nav);
