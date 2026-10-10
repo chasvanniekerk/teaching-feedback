@@ -1,59 +1,69 @@
 import fs from 'node:fs';
 import vm from 'node:vm';
-import path from 'node:path';
 
 const files = fs.readdirSync('.').filter(f => f.endsWith('.html')).sort();
-const all = new Set(files);
+const existing = new Set(files);
 const bases = [...new Set(files.map(f => f.replace(/-(nl|es)\.html$/, '.html')))];
 const errors = [];
-function check(ok, message) { if (!ok) errors.push(message); }
+function check(ok, message) {
+  if (!ok) errors.push(message);
+}
+
 for (const base of bases) {
   const stem = base.replace(/\.html$/, '');
-  for (const lang of ['en','nl','es']) {
+  for (const lang of ['en', 'nl', 'es']) {
     const filename = stem + (lang === 'en' ? '' : '-'+lang)+'.html';
-    check(all.has(filename), 'Missing translation: ' + filename);
+    check(existing.has(filename), 'Missing translation: '+filename);
   }
 }
-check(bases.length === 16, 'Expected 16 unique page groups, got '+bases.length);
+check(bases.length === 16, 'Expected 16 page groups, found '+bases.length);
+check(files.length === 48, 'Expected 48 pages, found '+files.length);
+
 for (const filename of files) {
-  const html = fs.readFileSync(filename,'utf8');
-  const lang = filename.endsWith('-nl.html') ? 'nl' : filename.endsWith('-es.html') ? 'es' : 'en';
-  check(new RegExp('<html\\b[^>]*\\blang=["\\\']'+lang+'["\\\']','i').test(html), filename+': invalid or absent html[lang]');
-  check(html.includes('didactics-language.js'), filename+': missing language navigation script');
-  const opens = (html.match(/<script\\b/gi)||[]).length;
-  const closes = (html.match(/<\\/script>/gi)||[]).length;
-  check(opens===closes, filename+': unbalanced script tags');
-  const pattern = /<script\\b([^>]*)>([\\s\\S]*?)<\\/script>/gi;
-  let script, i=0;
-  while((script=pattern.exec(html))) {
-    i++;
-    if (/\\bsrc\\s*=/.test(script[1]) || !script[2].trim()) continue;
-    try { new vm.Script(script[2],{ filename:filename+'#inline-'+i }); }
-    catch(err) { errors.push(filename+': JavaScript syntax error in script '+i+': '+err.message); }
+  const html = fs.readFileSync(filename, 'utf8');
+  const lang = filename.endsWith('-nl.html') ? 'nl' :
+    filename.endsWith('-es.html') ? 'es' : 'en';
+  const declared = html.match(/<html\b[^>]*\blang=["']([^"']+)/i)?.[1];
+  check(declared === lang, filename+': expected html lang='+lang+', found '+declared);
+  check(html.includes('didactics-language.js'), filename+': missing selector script');
+  check((html.match(/<script\b/gi)||[]).length === (html.match(/<\/script>/gi)||[]).length,
+    filename+': script element count mismatch');
+  let match, n=0;
+  const scripts = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi;
+  while ((match=scripts.exec(html))) {
+    n++;
+    if (/\bsrc\s*=/.test(match[1]) || !match[2].trim()) continue;
+    try { new vm.Script(match[2], {filename:filename+'#script'+n}); }
+    catch (err) { errors.push(filename+': invalid JavaScript '+n+': '+err.message); }
   }
-  const links = /\\bhref=["']([^"'#?]+\\.html)(?:[?#][^"']*)?["']/gi;
-  let link;
-  while((link=links.exec(html))) {
-    const target = link[1];
-    if (/^https?:\\/\\//.test(target)) continue;
-    check(all.has(target), filename+': broken page link to '+target);
+  const links = /\bhref=["']([^"'#?]+\.html)(?:[?#][^"']*)?["']/gi;
+  while ((match=links.exec(html))) {
+    const target=match[1];
+    if (!/^(https?:)?\/\//.test(target) && !target.startsWith('/'))
+      check(existing.has(target), filename+': dead HTML link '+target);
   }
-  if (filename.startsWith('survey') && !filename.startsWith('survey-') || /^survey-(?:nl|es)\\.html$/.test(filename)) {
-    check(html.includes('Array(33).fill(null)'),filename+': Teacher360 33-question count changed');
-    check(html.includes("API+'responses'"),filename+': Teacher360 responses endpoint changed');
-    check(html.includes('Self-assessment'),filename+': canonical self-assessment grouping missing');
+  if (/^survey(?:-(?:nl|es))?\.html$/.test(filename)) {
+    check(html.includes('Array(33).fill(null)'), filename+': Teacher360 count changed');
+    check(html.includes("API+'responses'"), filename+': response endpoint changed');
+    check(html.includes('Self-assessment'), filename+': missing canonical group label');
   }
-  if (filename.startsWith('sparks-knowledge-quiz')) {
-    check((html.match(/,"c":[0-3],"f":/g)||[]).length===12 || (html.match(/,c:[0-3],f:/g)||[]).length===12, filename+': quiz must contain 12 scored questions');
+  if (/^sparks-knowledge-quiz(?:-(?:nl|es))?\.html$/.test(filename)) {
+    const count=(html.match(/,"c":[0-3],"f":/g)||[]).length ||
+                (html.match(/,c:[0-3],f:/g)||[]).length;
+    check(count===12,filename+': expected 12 scored quiz questions, got '+count);
   }
-  if (filename.startsWith('sparks-preference-survey')) {
-    check(html.includes('length:20'), filename+': SPARKS 20-situation questionnaire changed');
-  }
+  if (/^sparks-preference-survey(?:-(?:nl|es))?\.html$/.test(filename))
+    check(html.includes('length:20'), filename+': missing 20-response array');
 }
-const nav=fs.readFileSync('didactics-language.js','utf8');
-check(nav.includes('location.search+location.hash'), 'Language changes must preserve survey/dashboard URL tokens and anchors');
-check(!/localStorage|sessionStorage|document\\.cookie/i.test(nav), 'Language navigation must not create persistent storage or cookies');
-try {new vm.Script(nav,{filename:'didactics-language.js'});}catch(err){errors.push('Language selector syntax: '+err.message);}
-console.log('Checked '+files.length+' HTML pages, '+bases.length+' languages groups and inline JavaScript syntax.');
-if(errors.length) {console.error(errors.join('\\n'));process.exitCode=1;}
-else console.log('PASS: file existence, language attributes, selector inclusion, relative HTML links, script balance, JavaScript syntax and questionnaire invariants.');
+const navigation=fs.readFileSync('didactics-language.js','utf8');
+check(navigation.includes('location.search+location.hash'),
+  'Language switching must preserve query parameters and anchors');
+check(!/localStorage|sessionStorage|document\.cookie/i.test(navigation),
+  'Language selector must not persist tracking data');
+try {new vm.Script(navigation, {filename:'didactics-language.js'});}
+catch (err) {errors.push('Language selector: '+err.message);}
+console.log('Audited '+files.length+' pages across '+bases.length+' groups.');
+if (errors.length) {
+  for(const err of errors) console.error('FAIL:',err);
+  process.exitCode=1;
+} else console.log('PASS: language coverage, links, inline scripts and key questionnaire invariants.');
