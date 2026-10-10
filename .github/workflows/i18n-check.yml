@@ -1,0 +1,24 @@
+name: DidacticsLab language and functionality checks
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [feat/en-nl-es-complete]
+  workflow_dispatch:
+jobs:
+  static-check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node scripts/check-i18n.mjs
+      - name: Install browser test runner
+        run: npm install --no-save playwright@1.55.0
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Exercise translated website with mocked backend
+        run: node scripts/test-browser.mjs
