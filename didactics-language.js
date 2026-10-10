@@ -8,10 +8,10 @@
     'create':['en','nl','es'], 'survey':['en','nl','es'],
     'dashboard':['en','nl','es'], 'results':['en','nl','es'],
     'sparks-preference-survey':['en','nl','es'],
-    'sparks-students':['nl','es'],
-    'applying-sparks':['en'], 'learning-preferences':['en'],
-    'learning-situations':['en'], 'sparks-knowledge-quiz':['en'],
-    'sparks-learning-preferences':['en'], 'sparks-lesson-designer':['en']
+    'sparks-students':['en','nl','es'],
+    'applying-sparks':['en','nl','es'], 'learning-preferences':['en','nl','es'],
+    'learning-situations':['en','nl','es'], 'sparks-knowledge-quiz':['en','nl','es'],
+    'sparks-learning-preferences':['en','nl','es'], 'sparks-lesson-designer':['en','nl','es']
   };
   const filename = location.pathname.split('/').pop() || 'index.html';
   const base = filename.replace(/-(nl|es)\.html$/,'.html').replace(/\.html$/,'');
@@ -21,6 +21,10 @@
   const header = document.querySelector('.navin') || document.querySelector('header .wrap') || document.querySelector('header');
   const existing = header && header.querySelector('.lang, .didactics-language, nav[aria-label="Language"], nav[aria-label="Idioma"], nav[aria-label="Taal"]');
   if (existing) existing.remove();
+  // Remove legacy single-language label left beside some SPARKS navigation headers.
+  if (header) for (const node of header.querySelectorAll('span')) {
+    if (node.textContent.trim()==='EN' && node.children.length===0) node.remove();
+  }
   const nav = document.createElement('nav');
   nav.className = 'didactics-language';
   nav.setAttribute('aria-label', current==='nl'?'Taal':current==='es'?'Idioma':'Language');
