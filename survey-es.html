@@ -29,11 +29,11 @@ async function loadSurvey(){let p=new URLSearchParams(location.search),code=p.ge
 loadSurvey();
 const sh=a=>{a=[...a];for(let x=a.length-1;x>0;x--){let j=Math.floor(Math.random()*(x+1));[a[x],a[j]]=[a[j],a[x]]}return a};
 
-// Anonymous completion timing; excludes hidden tabs and inactivity over 90 seconds.
+// Anonymous completion timing; excludes hidden tabs and inactivity over 30 seconds.
 let timingStart=0, activeSeconds=0, lastInteraction=0;
 function recordActivity(){lastInteraction=Date.now()}
 ['pointerdown','keydown','touchstart'].forEach(e=>document.addEventListener(e,recordActivity,{passive:true}));
-setInterval(()=>{if(timingStart && !document.hidden && Date.now()-lastInteraction<90000 && document.getElementById('q')?.classList.contains('hide')===false){activeSeconds++}},1000);
+setInterval(()=>{if(timingStart && !document.hidden && Date.now()-lastInteraction<30000 && document.getElementById('q')?.classList.contains('hide')===false){activeSeconds++}},1000);
 
 function start(){group=isSelf?'Self-assessment':document.getElementById('g').value;if(!group)return alert('Elige el tipo de participante.');questions=sh(MASTER.map((x,n)=>({id:'Q'+String(n+1).padStart(2,'0'),items:sh(x)})));ans=Array(33).fill(null);i=0;timingStart=Date.now();activeSeconds=0;lastInteraction=Date.now();s.classList.add('hide');q.classList.remove('hide');render()}
 function render(){qn.textContent='Pregunta '+(i+1)+' de 33';pc.textContent=Math.round((i+1)/33*100)+'%';bar.style.width=((i+1)/33*100)+'%';let items=questions[i].items;list.innerHTML='';err.textContent='';items.forEach(code=>{let d=document.createElement('div');d.className='item';d.dataset.code=code;d.innerHTML='<span class="txt">'+WL[code]+' <span class="info" tabindex="0" data-tip="'+DESC[code].replace(/"/g,'&quot;')+'">i</span></span>'+[1,2,3,4].map(rank=>'<button type="button" class="ball" data-rank="'+rank+'" onclick="pick(\''+code+'\','+rank+')">'+rank+'</button>').join('');list.appendChild(d)});paint()}
